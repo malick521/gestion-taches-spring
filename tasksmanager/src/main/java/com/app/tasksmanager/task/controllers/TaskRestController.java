@@ -36,8 +36,8 @@ public class TaskRestController {
     }
 
     @PatchMapping("/{id}")
-    public TaskResponseDTO updateTask(@RequestBody @Valid TaskRequestDTO dto, Long id){
-        return taskService.update(dto, id);
+    public TaskResponseDTO updateTask(@PathVariable Long id, @RequestBody @Valid TaskRequestDTO dto){
+        return taskService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")

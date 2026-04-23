@@ -4,6 +4,8 @@ import com.app.tasksmanager.task.dto.TaskRequestDTO;
 import com.app.tasksmanager.task.dto.TaskResponseDTO;
 import com.app.tasksmanager.task.model.TaskEntity;
 import com.app.tasksmanager.task.persistence.TaskRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -77,7 +79,7 @@ public class TaskService {
     public String delete(Long id){
 
         TaskEntity entity = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ANy student have this id !"));
+                .orElseThrow(() -> new RuntimeException("Get Failed : Any task have this id !"));
 
         taskRepository.delete(entity);
 
@@ -87,10 +89,10 @@ public class TaskService {
     }
 
     // function update a task
-    public TaskResponseDTO update(TaskRequestDTO dto, Long id){
+    public TaskResponseDTO update(Long id, TaskRequestDTO dto){
 
         TaskEntity entity = taskRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Any student have this id !"));
+                .orElseThrow(() -> new RuntimeException("Update Failed : Any task have this id !"));
 
 
         entity.setTitle(dto.getTitle());
